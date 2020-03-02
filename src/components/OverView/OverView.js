@@ -7,6 +7,7 @@ import { Spinner } from '../../views/design/Spinner';
 import { Button } from '../../views/design/Button';
 import { withRouter } from 'react-router-dom';
 
+
 const Container = styled(BaseContainer)`
   color: white;
   text-align: center;
@@ -26,7 +27,7 @@ const PlayerContainer = styled.li`
 
 
 
-class Game extends React.Component {
+class OverView extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -70,35 +71,39 @@ class Game extends React.Component {
 
   render() {
     return (
-      <Container>
-        <h2>User Overview </h2>
-        <p>To inspect user click button in user field:</p>
-        {!this.state.users ? (
-          <Spinner />
-        ) : (
-          <div>
-            <Users>
-              {this.state.users.map(user => {
-                return (
-                  <PlayerContainer key={user.id}>
-                    <Player user={user} />
-                  </PlayerContainer>
-                );
-              })}
-            </Users>
-            <Button
-              width="100%"
-              onClick={() => {
-                this.logout();
-              }}
-            >
-              Logout
-            </Button>
-          </div>
-        )}
-      </Container>
+        <Container>
+          <h2>User Overview </h2>
+          <p>To inspect user click the user field:</p>
+          {!this.state.users ? (
+              <Spinner />
+          ) : (
+              <div>
+                <Users>
+                  {this.state.users.map(user => {
+                    return (
+                        <PlayerContainer onClick={() => {
+                          this.logout();
+                          alert(user.id)
+                        }} key={user.id}>
+                          <Player user={user} />
+                        </PlayerContainer>
+                    );
+                  })}
+                  
+                </Users>
+                <Button
+                    width={"30%"}
+                    onClick={() => {
+                      this.logout();
+                    }}
+                >
+                  Logout
+                </Button>
+              </div>
+          )}
+        </Container>
     );
   }
 }
 
-export default withRouter(Game);
+export default withRouter(OverView);
