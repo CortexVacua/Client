@@ -86,9 +86,7 @@ class Register extends React.Component {
   async register() {
     try {
       // eslint-disable-next-line
-      const repeatedPassword=JSON.stringify({
-        repeatedPassword: this.state.repeatedPassword
-      });
+
       const requestBody = JSON.stringify({
         username: this.state.username,
         password: this.state.password,

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import styled from 'styled-components';
 import { BaseContainer } from '../../helpers/layout';
 import { api, handleError } from '../../helpers/api';
@@ -6,6 +6,9 @@ import Player from '../../views/Player';
 import { Spinner } from '../../views/design/Spinner';
 import { Button } from '../../views/design/Button';
 import { withRouter } from 'react-router-dom';
+
+
+
 
 
 const Container = styled(BaseContainer)`
@@ -27,22 +30,25 @@ const PlayerContainer = styled.li`
 
 
 
-class OverView extends React.Component {
+class OverView extends Component {
   constructor() {
     super();
     this.state = {
-      users: null
+      users: null,
+      userForProfile: null
     };
+  }
+
+  profile(props){;
+
   }
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('id');
     this.props.history.push('/login');
   }
 
-  checkProfile() {
-    alert("ALAAAAAARM")
-  }
 
   async componentDidMount() {
     try {
@@ -82,8 +88,9 @@ class OverView extends React.Component {
                   {this.state.users.map(user => {
                     return (
                         <PlayerContainer onClick={() => {
-                          this.logout();
-                          alert(user.id)
+                          this.props.history.push({
+                            pathname: '/profile/'+user.id
+                          })
                         }} key={user.id}>
                           <Player user={user} />
                         </PlayerContainer>

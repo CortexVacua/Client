@@ -8,6 +8,10 @@ import { LoginGuard } from "../routeProtectors/LoginGuard";
 import Login from "../../login/Login";
 import OverView from "../../OverView/OverView";
 import {OverViewGuard} from "../routeProtectors/OverViewGuard";
+import {ProfileGuard} from "../routeProtectors/ProfileGuard";
+import Profile from "../../Profile/Profile";
+import {ProfileEditGuard} from "../routeProtectors/ProfileEditGuard";
+import ProfileEdit from "../../ProfileEdit/ProfileEdit"
 
 /**
  * Main router of your application.
@@ -57,6 +61,24 @@ class AppRouter extends React.Component {
                 </LoginGuard>
               )}
             />
+            <Route
+              path="/profile/:id"
+              exact
+              render={() => (
+                 <ProfileGuard>
+                    <Profile />
+                 </ProfileGuard>
+              )}
+             />
+             <Route
+                  path="/profile/:id/edit"
+                  exact
+                  render={() => (
+                      <ProfileEditGuard >
+                          <ProfileEdit />
+                      </ProfileEditGuard>
+                  )}
+             />
             <Route path="/" exact render={() => <Redirect to={"/register"} />} />
           </div>
         </Switch>
