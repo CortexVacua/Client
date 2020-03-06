@@ -119,7 +119,7 @@ class ProfileEdit extends Component{
             this.setState({
                 username: user.username,
                 id: user.id,
-                accountCreationDate:new Intl.DateTimeFormat('en-GB').format(new Date(user.accountCreationDate)),
+                accountCreationDate:new Intl.DateTimeFormat('en-GB').format(new Date(Date.parse(user.accountCreationDate))),
                 status: user.status
             });
 
