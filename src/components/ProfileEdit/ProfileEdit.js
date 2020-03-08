@@ -88,7 +88,7 @@ class ProfileEdit extends Component{
                 token: localStorage.getItem("token"),
                 birthday: str
             });
-            const response = await api.put('/users/'+this.props.match.params.id, requestBody);
+            await api.put('/users/'+this.props.match.params.id, requestBody);
 
             // Login successfully worked --> navigate to the route /login
             this.props.history.push(`/profile/`+this.props.match.params.id);
