@@ -39,14 +39,30 @@ class OverView extends Component {
     };
   }
 
-  profile(props){;
 
-  }
 
-  logout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('id');
-    this.props.history.push('/login');
+  async logout() {
+    try {
+      // eslint-disable-next-line
+
+      const requestBody = JSON.stringify({
+        token: localStorage.getItem("token"),
+        id: localStorage.getItem("id"),
+      });
+      // eslint-disable-next-line
+      const response = await api.put('/logout', requestBody);
+
+      // Logout successfully worked --> navigate to the route /login
+      localStorage.removeItem('token');
+      localStorage.removeItem('id');
+      this.props.history.push(`/login`);
+    } catch (error) {
+      alert(`Something went wrong during the logout: \n${handleError(error)}`)
+      this.props.history.push('/login');
+      localStorage.removeItem('token');
+      localStorage.removeItem('id');
+    }
+
   }
 
 

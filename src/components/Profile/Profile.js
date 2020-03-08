@@ -42,14 +42,6 @@ class Profile extends Component{
         };
     }
 
-    async comparison() {
-        const browserId = localStorage.getItem("id");
-        return browserId === this.state.id;
-
-    }
-
-    edit() {
-    }
 
 
     async componentDidMount() {
