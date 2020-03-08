@@ -76,6 +76,7 @@ class Profile extends Component{
             console.log(response);
         } catch (error) {
             alert(`Something went wrong while fetching the user: \n${handleError(error)}`);
+            this.props.history.push("/overview/")
         }
     }
 
